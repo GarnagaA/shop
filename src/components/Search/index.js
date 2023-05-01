@@ -1,17 +1,12 @@
-import {useState} from "react";
 import styles from './Search.module.scss'
 
 
-function Search () {
-    // const {searchBlock, searchInput} = styles.search
-    const [searchValue, setSearchValue] = useState('')
-
+function Search (props) {
+    const {searchValue, setSearchValue} = props //
     // Функция по фильтрации State items на основе данный из Input
-    const onChangeSearchValue = (event) => {
-        // const {name, value} = event.target
-        console.log(event.target.value)
-        setSearchValue(event.target.value)
 
+    const onChangeSearchValue = (event) => {
+        setSearchValue(event.target.value)
     }
 
     return (
@@ -19,15 +14,18 @@ function Search () {
             <h2>
                 { searchValue ? `Поиск по запросу: ${searchValue}` : `Все кроссовки` }
             </h2>
-            <div className={styles.searchBlock}>
-                <img className='pl-5' width={20} src="/img/search.svg" alt="search"/>
-                <input className={styles.searchInput}
-                       type="text"
+            <label>
+                {/*допилить классы для обоих img
+                крестик очистки инпута ввода */}
+                <img className={styles.imgSearch} src="/img/search.svg" alt="search"/>
+                <input
                        placeholder='Поиск...'
                        onChange={onChangeSearchValue}
-                       // value={searchValue}
+                       value={searchValue}
                 />
-            </div>
+                <img className={styles.buttonClose} src="/img/btn-remove.svg" alt="btn-remove"
+                     onClick={() => setSearchValue('')}/>
+            </label>
         </div>
     )
 }
