@@ -6,11 +6,13 @@ import Search from './components/Search'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Routes, Route, Link } from "react-router-dom";
+import {Favorites} from "./pages/Favorites";
+import {Home} from "./pages/Home";
 
 
 
 export default function App() {
-    const [items, setItems] = useState([[
+    const [items, setItems] = useState([
         {
             "title": "Кроссовки Invisible White Black | BLAZE-BY",
             "price": 9990,
@@ -65,7 +67,7 @@ export default function App() {
             "imageUrl": "https://www.footlocker.com.eg/assets/styles/FootLocker/image-thumb__123227__product_zoom_large_800x800/314214700404_01.jpg",
             "id": "32143214"
         }
-    ]]) // хранит карточки (main content)
+    ]) // хранит карточки (main content)
 
     const [basket, setBasket] = useState(false) // хранит состояние корзины open/close
     const [basketItems, setBasketItems] = useState([]) // хранит товары переданные в корзину
@@ -90,10 +92,10 @@ export default function App() {
             console.log(res.data)
         });
 
-        // axios.get('https://64492443b88a78a8f0feddc9.mockapi.io/api/react-sneakers/basket').then(res => {
-        //     setBasketItems(res.data)
-        //     console.log(res.data)
-        // })
+        axios.get('https://64492443b88a78a8f0feddc9.mockapi.io/api/react-sneakers/basket').then(res => {
+            setBasketItems(res.data)
+            console.log(res.data)
+        })
 
         axios.get('https://64492443b88a78a8f0feddc9.mockapi.io/api/react-sneakers/basket').then(res => {
             setFavorites(res.data)
@@ -119,9 +121,6 @@ export default function App() {
         } catch (error) {
             alert('Не удалось добавить товар в Корзину...')
         }
-
-        setBasketItems( prevBasketItems => ([...prevBasketItems, obj]))
-        axios.post('https://64492443b88a78a8f0feddc9.mockapi.io/api/react-sneakers/basket/', obj)
     }
 
     const onAddToFavorites = async (obj) => { // Добавляем объекты в закладки
@@ -148,7 +147,6 @@ export default function App() {
     }
 
         return (
-
     <div className="wrapper clear">
         {basket && <Basket onCloseBasket={onOpenBasket}
                          setBasketItems={setBasketItems}
@@ -162,10 +160,6 @@ export default function App() {
                     .map( (item, index) =>
                         <Card
                             {...item} // сокращённая запись
-                            // title={item.title}
-                            // price={item.price}
-                            // imageUrl={item.imageUrl}
-                            // id={item.id}
                             key={index}
                             // onRemoveFromBasket={ () => onRemoveFromBasket(item.id)}
                             // onRemoveFromFavorites={() => onRemoveFromFavorites(item.id)}
