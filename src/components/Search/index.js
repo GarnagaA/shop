@@ -15,8 +15,6 @@ function Search (props) {
                 { searchValue ? `Поиск по запросу: ${searchValue}` : `Все кроссовки` }
             </h2>
             <label>
-                {/*допилить классы для обоих img
-                крестик очистки инпута ввода */}
                 <img className={styles.imgSearch} src="/img/search.svg" alt="search"/>
                 <input
                        placeholder='Поиск...'

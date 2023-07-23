@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
 
-function Header (props) {
-    const {onDrawer} = props
+function Header ({setBasket}) {
 
     return (
         <header className="d-flex justify-between p-40 align-center">
@@ -16,11 +15,11 @@ function Header (props) {
             </Link>
             <ul className='d-flex'>
                 <li className='mr-30'>
-                    <img className='cu-p' onClick={onDrawer} width={18} height={18} src='/img/cart.svg' alt='Корзина'/>
+                    <img className='cu-p' onClick={() => setBasket(true)} width={18} height={18} src='/img/cart.svg' alt='Корзина'/>
                     <span className='ml-5'>1205 руб.</span>
                 </li>
                 <li>
-                    <Link to='/favorites'>
+                    <Link to='/favorites' >
                         <img className='mr-30 cu-p' width={18}  height={18} src='/img/heart.svg' alt='Закладки'/>
                     </Link>
                 </li>
