@@ -1,90 +1,203 @@
-import Search from "../components/Search";
-import Card from "../components/Card";
-import {useContext} from "react";
-import AppContext from "../components/context";
+import Search from '../components/Search'
+import Card from '../components/Card'
+import { useContext } from 'react'
+import AppContext from '../components/context'
 
 // const sneakers = [
+// 	{
+// 		pureId: '835386',
+// 		title: 'Кроссовки Invisible White Black | BLAZE-BY',
+// 		price: '197700',
+// 		imageUrl:
+// 			'https://www.maha-amsterdam.com/cdn/shop/files/Nike-Air-Max-1-_86-Big-Bubble-_Lost-Sketch_-Maha-01.jpg?v=1686649022'
+// 	},
+// 	{
+// 		pureId: '38166',
+// 		title: 'Кроссовки Nike Dunk Low Retro White Black | BLAZE-BY',
+// 		price: '9990',
+// 		imageUrl:
+// 			'https://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/4NYAAOSwrUNgWKva/$_58.png'
+// 	},
+// 	{
+// 		pureId: '37463',
+// 		title: 'Nike M2K Tekno',
+// 		price: '32200',
+// 		imageUrl:
+// 			'https://www.maha-amsterdam.com/cdn/shop/files/Nike-Air-Max-1-PRM-_Slate-Blue_-FJ0698-100-Maha-01.jpg?v=1684937229'
+// 	},
+// 	{
+// 		pureId: '23931',
+// 		title: 'Nike Air Force 1 07 QS Valentines Day Love Letter',
+// 		price: '20100',
+// 		imageUrl:
+// 			'https://myreact.ru/wp-content/uploads/2021/04/Nike-Air-Force-1-Low-Valentines-Day-DD3384-600-Release-Date-2.jpg'
+// 	},
+// 	{
+// 		pureId: '394023',
+// 		title: 'Кроссовки Nike Air 200',
+// 		price: '10700',
+// 		imageUrl: 'https://ir.ozone.ru/s3/multimedia-z/c1000/6383869691.jpg'
+// 	},
+// 	{
+// 		pureId: '29582',
+// 		title: 'Кроссовки Nike Elephant One',
+// 		price: '21990',
+// 		imageUrl:
+// 			'https://cdn.shopify.com/s/files/1/0598/3669/4689/products/77338-116-original_800x_1e32a3fb-2855-4078-b297-742815405dde_1800x1800.png?v=1657936107'
+// 	},
+// 	{
+// 		pureId: '48232',
+// 		title: 'Кроссовки Nike Model 69',
+// 		price: '10700',
+// 		imageUrl:
+// 			'https://static.tildacdn.com/tild3638-3866-4132-b833-643132653638/12.jpg'
+// 	},
+// 	{
+// 		pureId: '193753',
+// 		title: 'Yeezy Boost 350 V2 Black (Non-Reflective)',
+// 		price: '10230',
+// 		imageUrl:
+// 			'https://www.maha-amsterdam.com/cdn/shop/products/Nike-Air-Max-97-Metallic-Silver-Chlorine-Blue-maha-01.jpg?v=1661179507'
+// 	},
+// 	{
+// 		pureId: '5873732',
+// 		title: 'Air Jordan 1 Retro High Hyper Royal',
+// 		price: '10400',
+// 		imageUrl:
+// 			'https://www.maha-amsterdam.com/cdn/shop/products/Nike-Air-Max-1-Premium-Corduroy-Baltic-Blue-FB8915-400-Maha-01.jpg?v=1678890094'
+// 	}
+// ]
+
+// const kitchens = [
 //     {
-//         "parentId": "54324",
-//         "title": "Кроссовки Invisible White Black | BLAZE-BY",
-//         "price": "9990",
-//         "imageUrl": "https://www.footlocker.com.eg/assets/styles/FootLocker/image-thumb__57780__product_zoom_large_800x800/314205222004_01.jpg"
+//       "pureId": "835386",
+//      "title": "Кухня ДЖОЙ",
+//       "price": "197700",
+//       "imageUrl": [
+//         "https://via.placeholder.com/150/f9f067",
+//         "https://www.1mf.ru/upload/iblock/cce/cce8fd8d73ce81207e86fe81188040c9.jpg",
+//         "https://www.1mf.ru/upload/iblock/643/6435d58395436575434b3f612f087803.jpg",
+//         "https://www.1mf.ru/upload/iblock/d92/d9230d417be02630c5db8f502ba40324.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "38166",
-//         "title": "Кроссовки Nike Dunk Low Retro White Black | BLAZE-BY",
-//         "price": "9990",
-//         "imageUrl": "https://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/4NYAAOSwrUNgWKva/$_58.png"
+//       "pureId": "85494",
+//       "title": "Кухня СИНГЛ",
+//       "price": "69780",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/d11/d11a30a40fa6eb41a12daf23a0735b49.jpg",
+//         "https://www.1mf.ru/upload/iblock/292/bf45de1e1412a0ff1d30e027a388d351.jpg",
+//         "https://www.1mf.ru/upload/iblock/146/146047690a09cff3e4bd61bd077f0f07.jpg",
+//         "https://www.1mf.ru/upload/iblock/7b3/806%D1%85550-%D1%81%D0%B8%D0%BD%D0%B3%D0%BB.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "37463",
-//         "title": "Nike M2K Tekno",
-//         "price": "32200",
-//         "imageUrl": "https://m2k.com.ua/image/cache/catalog/m2kphoto/black_team_orange/krossovki_nike_m2k_tekno_black_team_orange_ao3108_101_1-500x500-product_list.jpg"
+//       "pureId": "206290",
+//       "title": "Кухня ЛАЙН",
+//       "price": "192100",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/9cf/806%D1%85550-%D0%BB%D0%B0%D0%B9%D0%BD.jpg",
+//         "https://www.1mf.ru/upload/iblock/9cf/806%D1%85550-%D0%BB%D0%B0%D0%B9%D0%BD.jpg",
+//         "https://www.1mf.ru/upload/iblock/aef/aef070fcf8def13a837e1b2c7f3cf40c.jpg",
+//         "https://www.1mf.ru/upload/iblock/750/750cd409efc2c34594cc2b660b2c4199.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "23931",
-//         "title": "Nike Air Force 1 07 QS Valentines Day Love Letter",
-//         "price": "20100",
-//         "imageUrl": "https://myreact.ru/wp-content/uploads/2021/04/Nike-Air-Force-1-Low-Valentines-Day-DD3384-600-Release-Date-2.jpg"
+//       "pureId": "19048",
+//       "title": "Кухня ЛОТАРИНГИЯ",
+//       "price": "142200",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/4e5/lotaringija_806%D1%85550.jpg",
+//         "https://www.1mf.ru/upload/iblock/8a9/8a94a847ef902dca3d828b42a4c3bd88.jpg",
+//         "https://www.1mf.ru/upload/iblock/464/4643a4493ff13e207c2c20d6bcb25b12.jpg",
+//        "https://www.1mf.ru/upload/iblock/017/4e6cbd0573b6525d16c8255ccbb13b8c.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "394023",
-//         "title": "Кроссовки Nike Air 200",
-//         "price": "10700",
-//         "imageUrl": "https://ir.ozone.ru/s3/multimedia-z/c1000/6383869691.jpg"
+//       "pureId": "663498",
+//       "title": "Кухня ЧЕСТЕР",
+//       "price": "149500",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/2fb/40e2856f3a8bf98c9fce914b1fc65df8.jpg",
+//         "https://www.1mf.ru/upload/iblock/735/735369a91b1a51c60d1c665b1a896a53.jpg",
+//         "https://www.1mf.ru/upload/iblock/8f8/8f8598fdfc3f624870ffe5c149a54cc7.jpg",
+//         "https://www.1mf.ru/upload/iblock/673/67346ea0f6a33aa2555f995ef35d3e73.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "29582",
-//         "title": "Кроссовки Nike Elephant One",
-//         "price": "21990",
-//         "imageUrl": "https://cdn.shopify.com/s/files/1/0598/3669/4689/products/77338-116-original_800x_1e32a3fb-2855-4078-b297-742815405dde_1800x1800.png?v=1657936107"
+//       "pureId": "317626",
+//       "title": "Кухня МЮНХЕН",
+//       "price": "142200",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/b4d/b4d60988947dd5258766edbf528bd200.jpg",
+//         "https://www.1mf.ru/upload/iblock/8a2/8a2bd2e84fde7ca257b01a7b710019e2.jpg",
+//         "https://www.1mf.ru/upload/iblock/4d8/4d88b2ed7f0591bfaddd35857521e9d8.jpg",
+//         "https://www.1mf.ru/upload/iblock/0b4/0b4a740d50b319d3fc9d5af60a7d1be6.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "48232",
-//         "title": "Кроссовки Nike Model 69",
-//         "price": "10700",
-//         "imageUrl": "https://static.tildacdn.com/tild3638-3866-4132-b833-643132653638/12.jpg"
+//       "pureId": "220431",
+//       "title": "Кухня ОРЛЕАН",
+//       "price": "225200",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/4d9/4d955b1c5a00c3a0450ef1689013b676.jpg",
+//         "https://www.1mf.ru/upload/iblock/5a8/5a871d61018bedf6cec5df1210a16d45.jpg",
+//         "https://www.1mf.ru/upload/iblock/b09/b098d07b090de9a168c3b611eb3da8e0.jpg",
+//         "https://www.1mf.ru/upload/iblock/d0b/d0bf08db88c99451fc428421432907e9.jpg"
+//       ]
 //     },
 //     {
-//         "parentId": "193753",
-//         "title": "Yeezy Boost 350 V2 Black (Non-Reflective)",
-//         "price": "10230",
-//         "imageUrl": "https://www.footlocker.com.eg/assets/styles/FootLocker/image-thumb__127613__product_zoom_large_800x800/314215228504_01.jpg"
+//       "pureId": "285886",
+//       "title": "Кухня ПРОВАНС",
+//       "price": "206900",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/medialibrary/2b6/pryamaya_kuhnya_provans_v_stile_neoklassika_v_cvete_emal_vino.jpg",
+//         "https://www.1mf.ru/upload/iblock/5b3/806%D1%85550-%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D1%81.jpg",
+//         "https://www.1mf.ru/upload/iblock/14a/14a34b9ed41869bd89a25677a3b385d9.jpg",
+//         "https://www.1mf.ru/upload/iblock/b92/b92eedbcb87a67f98bb92a9178823b9b.jpg"
+//         ]
 //     },
 //     {
-//         "parentId": "5873732",
-//         "title": "Air Jordan 1 Retro High Hyper Royal",
-//         "price": "10400",
-//         "imageUrl": "https://www.footlocker.com.eg/assets/styles/FootLocker/image-thumb__123227__product_zoom_large_800x800/314214700404_01.jpg"
+//       "pureId": "309769",
+//       "title": "Кухня АР-ДЕКО",
+//       "price": "126150",
+//       "imageUrl": [
+//         "https://www.1mf.ru/upload/iblock/2bc/2bc072ce33b0241eb17d0406c63bbfcc.jpg",
+//         "https://www.1mf.ru/upload/iblock/d36/806%D1%85550-%D0%B0%D1%80-%D0%B4%D0%B5%D0%BA%D0%BE.jpg",
+//         "https://www.1mf.ru/upload/iblock/e62/e62390ed30f4cc327bf9ef6a2907d091.jpg",
+//         "https://www.1mf.ru/upload/iblock/5de/5de52294d64cc3dbd6b7082e87eb269d.jpg"
+//         ]
+//     },
+//     {
+//     "pureId": "621551",
+//     "title": "Кухня ЭТНО",
+//     "price": "113100",
+//     "imageUrl": [
+//       "https://www.1mf.ru/upload/iblock/e4b/e4b653e9629b1e85d3826e50280ed72c.jpg",
+//       "https://www.1mf.ru/upload/iblock/c65/c657629e171e6f312856525d374fbccc.jpg",
+//       "https://www.1mf.ru/upload/iblock/dc9/dc93c08c4cd4f1dd63edaaccf0f60180.jpg",
+//       "https://www.1mf.ru/upload/iblock/247/2477bc894c2dce58c9200be517d66e26.jpg"
+//     ]
 //     }
 // ]
-function Home({
-        setSearchValue,
-        searchValue,
-  }) {
-    const {items, isLoading} =useContext(AppContext)
-    const renderItems = () => {
 
-        const filteredItems = items.filter(obj =>
-            obj.title.toLowerCase().includes(searchValue.toLowerCase())
-        );
-
-        return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
-                <Card
-                    key={index}
-                    {...item}
-                />
-        ))
-    };
-
-    return (
-        <div className="content2 p-40">
-            <Search setSearchValue={setSearchValue} searchValue={searchValue}/>
-            <ul className='d-flex flex-wrap'>
-                {renderItems()}
-            </ul>
-        </div>
+function Home() {
+  const {items, isLoading, searchValue} = useContext(AppContext)
+  const renderItems = () => {
+    const filteredItems = items.filter(obj =>
+      obj.title.toLowerCase().includes(searchValue.toLowerCase())
     )
+
+    return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
+      <Card key={index} {...item} />
+    ))
+  }
+
+  return (
+    <div className='content2 p-40'>
+      <Search />
+      <ul className='d-flex flex-wrap'>{renderItems()}</ul>
+    </div>
+  )
 }
-export default Home;
+export default Home

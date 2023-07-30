@@ -14,7 +14,6 @@
     flex-direction: column;
     justify-content: space-between;
 
-
     width: 385px;
     height: 100%;
 
@@ -27,13 +26,11 @@
       transition: 0.3s;
       border-radius: 9px;
 
-
       &:hover {
         opacity: 1;
         border: 1px solid #d5d5da;
       }
     }
-
 
     h2 {
       font-size: 24px;
@@ -54,14 +51,15 @@
       flex-wrap: wrap;
       overflow: auto;
 
-
       .card {
         position: relative;
         border: 1px solid #f8f8f8;
         padding: 3%;
         width: 100%;
         border-radius: 20px;
-        transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+        transition:
+          box-shadow 0.2s ease-in-out,
+          transform 0.2s ease-in-out;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -138,25 +136,25 @@
         }
       }
     }
-    .emptyBasket{
+    .emptyBasket {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       margin-top: 30%;
       justify-content: center;
 
-      .text{
+      .text {
         text-align: center;
         width: 285px;
         margin-bottom: 40px;
         opacity: 0.4;
       }
 
-      .button{
+      .button {
         //position: relative;
         width: 245px;
         height: 55px;
-        background: #9DD458;
+        background: #9dd458;
         border-radius: 18px;
         display: flex;
         align-items: center;
@@ -164,18 +162,18 @@
         border: none;
         transition: 0.4s ease-in-out;
 
-        &:hover{
+        &:hover {
           transform: translateX(-7px);
         }
 
-        .img{
+        .img {
           //position: absolute;
           left: 20px;
           color: white;
           transform: rotate(180deg);
         }
 
-        span{
+        span {
           color: white;
           font-weight: 600;
           font-size: 16px;
@@ -186,6 +184,3 @@
     }
   }
 }
-
-
-

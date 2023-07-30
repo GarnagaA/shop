@@ -7,7 +7,9 @@
   //margin-right: 4%;
   margin-bottom: 3%;
   border-radius: 20px;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,21 +20,21 @@
     transform: translateY(-2px);
   }
 
-  img{
+  img {
     width: 100%;
   }
 
-  .favorite{
+  .favorite {
     position: absolute;
     cursor: pointer;
   }
 
-  h5{
+  h5 {
     font-weight: 400;
     font-size: 14px;
   }
 
-  button{
+  button {
     background-color: #ffffff;
     border: 1px solid #f2f2f2;
     box-sizing: border-box;
@@ -42,17 +44,17 @@
     cursor: pointer;
   }
 
-  span{
+  span {
     text-transform: uppercase;
-    opacity: .5;
+    opacity: 0.5;
     font-size: 13px;
   }
 
-  b{
+  b {
     font-size: 14px;
   }
 
-  .card:nth-child(4n+4){
+  .card:nth-child(4n + 4) {
     margin-right: 0;
   }
 }

@@ -5,44 +5,43 @@
   align-items: center;
 }
 
-  h2 {
-    margin-left: 0;
+h2 {
+  margin-left: 0;
+}
+
+label {
+  display: flex;
+  height: 32px;
+  //padding: 0 15px;
+  //opacity: 0.5;
+  border: none;
+
+  input {
+    font-size: 16px;
+    border: none;
+  }
+  //&:focus ~ label{
+  //  opacity: 1;
+  //}
+
+  .imgSearch {
+    width: 16px;
+    margin-right: 8px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.13s;
+  }
+  .imgSearch:hover {
+    opacity: 1;
   }
 
-  label {
-    display: flex;
-    height: 32px;
-    //padding: 0 15px;
-    //opacity: 0.5;
-    border: none;
-
-    input{
-      font-size: 16px;
-      border: none;
-
-    }
-    //&:focus ~ label{
-    //  opacity: 1;
-    //}
-
-    .imgSearch {
-      width: 16px;;
-      margin-right: 8px;
-      opacity: 0.5;
-      cursor: pointer;
-      transition: 0.13s;
-    }
-    .imgSearch:hover{
-      opacity: 1;
-    }
-
-    .buttonClose{
+  .buttonClose {
     width: 25px;
     opacity: 0.5;
     cursor: pointer;
     transition: 0.15s;
   }
-    .buttonClose:hover{
-      opacity: 1;
-    }
+  .buttonClose:hover {
+    opacity: 1;
   }
+}
