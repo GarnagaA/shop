@@ -20,7 +20,7 @@ export default function App() {
 
 	useEffect(() => {
 		async function fetchData() {
-			// Чтобы избежать бесконечного цикла ререндера функции App и запроса fetch(который обновляет state), мы обращаемся к backend один раз
+			// Чтобы избежать бесконечного цикла ререндера функции App и запроса axios(который обновляет state), мы обращаемся к backend один раз
 			try {
 				const [favoriteItemsResponse, basketItemsResponse, itemsResponse] =
 					await Promise.all([
@@ -28,22 +28,28 @@ export default function App() {
 						axios.get('https://64c54e60c853c26efadab373.mockapi.io/basket'),
 						axios.get('https://64c54e60c853c26efadab373.mockapi.io/items')
 					])
-
+				// const checkedImageUrl = src => {
+				// 	const img = new Image();
+				// 	img.onload = function () {return true}
+				// 	img.onerror = function () {return false}
+				// 	}
+				// 	//На случай если ссылки будут не валидными, мы подменим src на локальные файлы
+				// 	//
+				// ;[...itemsResponse.data].map( item => {
+				// 	if (checkedImageUrl) {
+				//
+				// 	} else return item
+				// })
 				setIsLoading(false)
 				setFavoriteItems(prev => [...prev, ...favoriteItemsResponse.data])
 				setBasketItems(prev => [...prev, ...basketItemsResponse.data])
 				setItems(prev => [...prev, ...itemsResponse.data])
-				console.log(favoriteItemsResponse.data)
-				console.log(basketItemsResponse.data)
-				console.log(itemsResponse.data)
 			} catch (error) {
-				alert('Ошибка при запросе данных ;(')
-				console.error(error)
+				alert('Ошибка при запросе данных с сервера;(')
 			}
 		}
-		//
 		fetchData() // вызываем нашу async ф-цию
-		//
+
 		//     //     Вариант отправки запроса через встроенный в браузер метод fetch() (window.fetch)
 		//     //     fetch('https://64492443b88a78a8f0feddc9.mockapi.io/api/react-sneakers/cards')
 		//     //         .then( res => {
@@ -57,22 +63,20 @@ export default function App() {
 	}, [])
 
 	const onAddToBasket = async obj => {
-		// Добавляем и удаляем объекты
-		const checkObject = basketItems.find(
+		const checkedObject = basketItems.find(
 			item => Number(item.pureId) === Number(obj.pureId)
 		)
 		try {
-			if (checkObject) {
-				// удаление из корзины
+			if (checkedObject) {
 				setBasketItems(prevItems =>
 					prevItems.filter(
 						prevObj => Number(prevObj.pureId) !== Number(obj.pureId)
 					)
 				)
 				await axios.delete(
-					`https://64c54e60c853c26efadab373.mockapi.io/basket/${obj.id}`
+					`https://64c54e60c853c26efadab373.mockapi.io/basket/${checkedObject.id}`
 				)
-				console.log(`удалили объект c id = ${obj.parentId}`)
+				console.log(`удалили объект c id = ${checkedObject.id}`)
 			} else {
 				setBasketItems(prev => [...prev, obj])
 				const { data } = await axios.post(
@@ -81,7 +85,7 @@ export default function App() {
 				)
 				setBasketItems(prev =>
 					prev.map(item => {
-						if (item.parentId === data.parentId) {
+						if (item.pureId === data.pureId) {
 							return {
 								...item,
 								id: data.id
@@ -97,6 +101,15 @@ export default function App() {
 		}
 	}
 
+	const checkedImageUrl = (src, index) => {
+		const img = new Image()
+		img.onload = function () {
+			return true
+		}
+		img.onerror = function () {
+			return false
+		}
+	}
 	const onAddToFavorites = async obj => {
 		try {
 			if (
@@ -135,18 +148,12 @@ export default function App() {
 		}
 	}
 
-	const isItemAdded = async pureId => {
-		const { data } = await axios.get(
-			'https://64c5521ec853c26efadab8a4.mockapi.io/basket'
-		)
-		return data.some(obj => Number(obj.pureId) === Number(pureId))
+	const isItemAdded = pureId => {
+		return basketItems.some(obj => Number(obj.pureId) === Number(pureId))
 	}
 
-	const isItemLiked = async pureId => {
-		const { data } = await axios.get(
-			'https://64c5521ec853c26efadab8a4.mockapi.io/favorites'
-		)
-		return data.some(obj => Number(obj.pureId) === Number(pureId))
+	const isItemLiked = pureId => {
+		return favoriteItems.some(item => Number(item.pureId) === Number(pureId))
 	}
 
 	const openBasket = () => setBasket(prev => !prev)
@@ -167,23 +174,15 @@ export default function App() {
 				onRemoveFromBasket,
 				isItemAdded,
 				isItemLiked,
-				openBasket
+				openBasket,
+				checkedImageUrl
 			}}
 		>
 			<div className='wrapper clear'>
 				{basket && <Basket />}
 				<Header />
 				<Routes>
-					<Route
-						path='/favorites'
-						element={
-							<Favorites
-								items={favoriteItems}
-								onAddToFavorites={onAddToFavorites}
-								// onRemoveFromFavorites={(obj) => onRemoveFromFavorites(obj.id)}
-							/>
-						}
-					/>
+					<Route path='/favorites' element={<Favorites />} />
 					<Route path='/' element={<Home />} />
 				</Routes>
 			</div>

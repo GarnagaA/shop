@@ -12,19 +12,17 @@ function Card({ title, price, imageUrl, id, pureId }) {
 		isLoading
 	} = useContext(AppContext)
 
-	const obj = { id, parentId: id, pureId, title, price, imageUrl }
-	// const [isFavorite, setIsFavorite] = useState(favorited) // хранит состояние лайка нажат/не нажат
-	// const [isAdded, setIsAdded] = useState(added) // хранит состояния крестика добавления добавлен/ не добавлен ????? проверить нужен ли
+	// const itemsKey = Object.keys(items[0])
+	const obj = { parentId: id, pureId, title, price, imageUrl }
 
 	const onClickLike = obj => {
 		// setIsFavorite(prev => !prev)
-		onAddToFavorites(obj)
+		onAddToFavorites({ parentId: obj.id, ...obj })
 		console.log('onClickLike' + obj)
 	}
 
 	const onClickPlus = obj => {
 		// setIsAdded(prev => !prev)
-		// Добавить отдельный метод removeBasket...????????????????????????????????????????????????????????????????????
 		onAddToBasket(obj)
 	}
 
@@ -51,10 +49,12 @@ function Card({ title, price, imageUrl, id, pureId }) {
 			) : (
 				<div>
 					{onAddToFavorites && (
-						<div className={styles.favorite} onClick={onClickLike}>
+						<div className={styles.favorite} onClick={() => onClickLike(obj)}>
 							<img
+								width={30}
+								height={30}
 								src={
-									isItemLiked(pureId) ? '/img/liked.svg' : '/img/unliked.svg'
+									isItemLiked(pureId) ? '/img/liked.svg' : '/img/unliked(2).svg'
 								}
 								alt='unliked'
 							/>
@@ -73,16 +73,21 @@ function Card({ title, price, imageUrl, id, pureId }) {
 						</div>
 						{onAddToBasket && (
 							<button onClick={() => onClickPlus(obj)}>
-								<img
-									width={22}
-									height={22}
-									src={
-										isItemAdded(pureId)
-											? '/img/btn-checked.svg'
-											: '/img/plus.svg'
-									}
-									alt='button add'
-								/>
+								{isItemAdded(pureId) ? (
+									<img
+										width={11}
+										height={11}
+										src='/img/plus.svg'
+										alt='button add'
+									/>
+								) : (
+									<img
+										width={32}
+										height={32}
+										src='/img/btn-checked.svg'
+										alt='button '
+									/>
+								)}
 							</button>
 						)}
 					</div>
