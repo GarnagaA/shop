@@ -1,9 +1,9 @@
 import styles from './Card.module.scss'
 import { useContext } from 'react'
-import AppContext from '../context'
 import ContentLoader from 'react-content-loader'
+import AppContext from '../context'
 
-function Card({ title, price, imageUrl, id, parentId, pureId }) {
+function Card({ title, price, imageUrl, id, pureId }) {
 	const {
 		isItemAdded,
 		isItemLiked,
@@ -16,17 +16,16 @@ function Card({ title, price, imageUrl, id, parentId, pureId }) {
 	// const [isFavorite, setIsFavorite] = useState(favorited) // хранит состояние лайка нажат/не нажат
 	// const [isAdded, setIsAdded] = useState(added) // хранит состояния крестика добавления добавлен/ не добавлен ????? проверить нужен ли
 
-	const onClickLike = () => {
+	const onClickLike = obj => {
 		// setIsFavorite(prev => !prev)
 		onAddToFavorites(obj)
-		console.log('onClickFavorite' + obj)
+		console.log('onClickLike' + obj)
 	}
 
-	const onClickPlus = () => {
+	const onClickPlus = obj => {
 		// setIsAdded(prev => !prev)
 		// Добавить отдельный метод removeBasket...????????????????????????????????????????????????????????????????????
 		onAddToBasket(obj)
-		console.log('onBasket' + obj)
 	}
 
 	return (
@@ -55,7 +54,7 @@ function Card({ title, price, imageUrl, id, parentId, pureId }) {
 						<div className={styles.favorite} onClick={onClickLike}>
 							<img
 								src={
-									isItemLiked(parentId) ? '/img/liked.svg' : '/img/unliked.svg'
+									isItemLiked(pureId) ? '/img/liked.svg' : '/img/unliked.svg'
 								}
 								alt='unliked'
 							/>
@@ -73,12 +72,12 @@ function Card({ title, price, imageUrl, id, parentId, pureId }) {
 							<b>{price} руб.</b>
 						</div>
 						{onAddToBasket && (
-							<button onClick={onClickPlus}>
+							<button onClick={() => onClickPlus(obj)}>
 								<img
 									width={22}
 									height={22}
 									src={
-										isItemAdded(parentId)
+										isItemAdded(pureId)
 											? '/img/btn-checked.svg'
 											: '/img/plus.svg'
 									}

@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import AppContext from '../context'
 
 function Basket() {
-	const { setBasket, basketItems, onRemoveFromBasket } = useContext(AppContext)
+	const { basketItems, onRemoveFromBasket, openBasket } = useContext(AppContext)
 
 	return (
 		<div className={styles.overlay}>
@@ -17,7 +17,7 @@ function Basket() {
 							height={32}
 							src='/img/btn-remove.svg'
 							alt='btn-remove'
-							onClick={() => setBasket(false)}
+							onClick={openBasket}
 						/>
 					</h2>
 					{basketItems.length > 0 ? (
@@ -42,7 +42,7 @@ function Basket() {
 										height={32}
 										src='/img/btn-remove.svg'
 										alt='btn-remove'
-										onClick={onRemoveFromBasket(item.parentId)} // onRemove
+										onClick={onRemoveFromBasket(item.parentId)}
 									/>
 								</li>
 							))}
@@ -56,10 +56,7 @@ function Basket() {
 							<div className='container'>
 								<img src='/img/empty-cart.jpg' alt='empty basket' />
 							</div>
-							<button
-								className={styles.button}
-								onClick={() => setBasket(false)}
-							>
+							<button className={styles.button} onClick={openBasket}>
 								<img className={styles.img} src='/img/arrow.svg' alt='arrow' />
 								<span className=''>Вернуться назад</span>
 							</button>

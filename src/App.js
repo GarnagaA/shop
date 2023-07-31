@@ -30,9 +30,12 @@ export default function App() {
 					])
 
 				setIsLoading(false)
-				setFavoriteItems(favoriteItemsResponse.data)
-				setBasketItems(basketItemsResponse.data)
-				setItems(itemsResponse.data)
+				setFavoriteItems(prev => [...prev, ...favoriteItemsResponse.data])
+				setBasketItems(prev => [...prev, ...basketItemsResponse.data])
+				setItems(prev => [...prev, ...itemsResponse.data])
+				console.log(favoriteItemsResponse.data)
+				console.log(basketItemsResponse.data)
+				console.log(itemsResponse.data)
 			} catch (error) {
 				alert('Ошибка при запросе данных ;(')
 				console.error(error)
@@ -96,46 +99,57 @@ export default function App() {
 
 	const onAddToFavorites = async obj => {
 		try {
-			if (favoriteItems.some(favObj => Number(favObj.id) === Number(obj.id))) {
+			if (
+				favoriteItems.some(
+					favObj => Number(favObj.pureId) === Number(obj.pureId)
+				)
+			) {
 				axios.delete(
 					`https://64c5521ec853c26efadab8a4.mockapi.io/favorites/${obj.id}`
 				)
-				setFavoriteItems(prev =>
-					prev.filter(item => Number(item.id) !== Number(obj.id))
-				)
-				// не убираем из State карточку, на случай случайного клика, но удаляем с Backend
+				// setFavoriteItems(prev =>
+				// 	prev.filter(item => Number(item.pureId) !== Number(obj.pureId))
+				// ) // не убираем из State карточку, на случай случайного клика, но удаляем с Backend
 			} else {
 				const { data } = await axios.post(
 					'https://64c5521ec853c26efadab8a4.mockapi.io/favorites',
 					obj
 				)
 				setFavoriteItems(prev => [...prev, data])
-				console.log(obj)
+				console.log('onAddToFavorites добавили item.pureId = ' + obj.pureId)
 			}
 		} catch (error) {
 			alert('Не удалось добавить в Избранное...')
 		}
-		console.log(favoriteItems)
+		// console.log(favoriteItems)
 	}
 
 	//  Метод delete() должен удалять объект с сервера по id ?????????????
-	const onRemoveFromBasket = id => {
+	const onRemoveFromBasket = (id, pureId) => {
 		try {
 			axios.delete(`https://64c54e60c853c26efadab373.mockapi.io/basket/${id}`)
-			setBasketItems(prev => prev.filter(obj => obj.id !== id))
+			setBasketItems(prev => prev.filter(obj => obj.pureId !== pureId))
 		} catch (error) {
-			alert('Ошибка при удалении из корзины')
+			// alert('Ошибка при удалении из корзины')
 			console.error(error)
 		}
 	}
 
-	const isItemAdded = id => {
-		return basketItems.some(obj => Number(obj.parentId) === Number(id))
+	const isItemAdded = async pureId => {
+		const { data } = await axios.get(
+			'https://64c5521ec853c26efadab8a4.mockapi.io/basket'
+		)
+		return data.some(obj => Number(obj.pureId) === Number(pureId))
 	}
 
-	const isItemLiked = id => {
-		return favoriteItems.some(obj => Number(obj.parentId) === Number(id))
+	const isItemLiked = async pureId => {
+		const { data } = await axios.get(
+			'https://64c5521ec853c26efadab8a4.mockapi.io/favorites'
+		)
+		return data.some(obj => Number(obj.pureId) === Number(pureId))
 	}
+
+	const openBasket = () => setBasket(prev => !prev)
 
 	return (
 		<AppContext.Provider
@@ -152,7 +166,8 @@ export default function App() {
 				onAddToFavorites,
 				onRemoveFromBasket,
 				isItemAdded,
-				isItemLiked
+				isItemLiked,
+				openBasket
 			}}
 		>
 			<div className='wrapper clear'>
