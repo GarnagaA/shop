@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import AppContext from '../context'
 
 function Basket() {
-	const { basketItems, onRemoveFromBasket, openBasket } = useContext(AppContext)
+	const { basketItems, onRemoveFromBasket, setBasket } = useContext(AppContext)
 
 	return (
 		<div className={styles.overlay}>
@@ -17,18 +17,18 @@ function Basket() {
 							height={32}
 							src='/img/btn-remove.svg'
 							alt='btn-remove'
-							onClick={openBasket}
+							onClick={() => setBasket(prev => !prev)}
 						/>
 					</h2>
 					{basketItems.length > 0 ? (
 						<ul className={styles.cardsContainer}>
 							{basketItems.map((item, index) => (
-								<li className={styles.card} key={index}>
+								<li className={styles.card} key={index} {...item}>
 									<div className='d-flex'>
 										<img
 											width={133}
 											height={112}
-											src={item.imageUrl}
+											src={item.src}
 											alt='sneakers'
 										/>
 										<div className='justify-between'>
@@ -42,7 +42,7 @@ function Basket() {
 										height={32}
 										src='/img/btn-remove.svg'
 										alt='btn-remove'
-										onClick={onRemoveFromBasket(item.parentId)}
+										onClick={onRemoveFromBasket({ ...item })}
 									/>
 								</li>
 							))}
@@ -56,7 +56,10 @@ function Basket() {
 							<div className='container'>
 								<img src='/img/empty-cart.jpg' alt='empty basket' />
 							</div>
-							<button className={styles.button} onClick={openBasket}>
+							<button
+								className={styles.button}
+								onClick={() => setBasket(prev => !prev)}
+							>
 								<img className={styles.img} src='/img/arrow.svg' alt='arrow' />
 								<span className=''>Вернуться назад</span>
 							</button>

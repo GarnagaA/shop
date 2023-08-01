@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import ContentLoader from 'react-content-loader'
 import AppContext from '../context'
 
-function Card({ title, price, imageUrl, id, pureId }) {
+function Card({ title, price, src, id, pureId }) {
 	const {
 		isItemAdded,
 		isItemLiked,
@@ -12,19 +12,7 @@ function Card({ title, price, imageUrl, id, pureId }) {
 		isLoading
 	} = useContext(AppContext)
 
-	// const itemsKey = Object.keys(items[0])
-	const obj = { parentId: id, pureId, title, price, imageUrl }
-
-	const onClickLike = obj => {
-		// setIsFavorite(prev => !prev)
-		onAddToFavorites({ parentId: obj.id, ...obj })
-		console.log('onClickLike' + obj)
-	}
-
-	const onClickPlus = obj => {
-		// setIsAdded(prev => !prev)
-		onAddToBasket(obj)
-	}
+	const obj = { parentId: id, pureId, title, price, src }
 
 	return (
 		<div className={styles.card}>
@@ -49,7 +37,10 @@ function Card({ title, price, imageUrl, id, pureId }) {
 			) : (
 				<div>
 					{onAddToFavorites && (
-						<div className={styles.favorite} onClick={() => onClickLike(obj)}>
+						<div
+							className={styles.favorite}
+							onClick={() => onAddToFavorites(obj)}
+						>
 							<img
 								width={30}
 								height={30}
@@ -60,7 +51,7 @@ function Card({ title, price, imageUrl, id, pureId }) {
 							/>
 						</div>
 					)}
-					<img src={imageUrl} alt='sneakers' />
+					<img src={src} alt='sneakers' />
 					<h5>
 						Мужские Кроссовки
 						<br />
@@ -72,20 +63,20 @@ function Card({ title, price, imageUrl, id, pureId }) {
 							<b>{price} руб.</b>
 						</div>
 						{onAddToBasket && (
-							<button onClick={() => onClickPlus(obj)}>
+							<button onClick={() => onAddToBasket(obj)}>
 								{isItemAdded(pureId) ? (
-									<img
-										width={11}
-										height={11}
-										src='/img/plus.svg'
-										alt='button add'
-									/>
-								) : (
 									<img
 										width={32}
 										height={32}
 										src='/img/btn-checked.svg'
 										alt='button '
+									/>
+								) : (
+									<img
+										width={11}
+										height={11}
+										src='/img/plus.svg'
+										alt='button add'
 									/>
 								)}
 							</button>

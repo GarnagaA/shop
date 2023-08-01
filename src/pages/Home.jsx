@@ -6,65 +6,75 @@ import AppContext from '../components/context'
 // const sneakers = [
 // 	{
 // 		pureId: '835386',
+// 		src: 'img/sneakers/1.jpg',
 // 		title: 'Кроссовки Invisible White Black | BLAZE-BY',
-// 		price: '197700',
-// 		imageUrl:
-// 			'https://www.maha-amsterdam.com/cdn/shop/files/Nike-Air-Max-1-_86-Big-Bubble-_Lost-Sketch_-Maha-01.jpg?v=1686649022'
+// 		price: '197700'
 // 	},
 // 	{
 // 		pureId: '38166',
+// 		src: 'img/sneakers/2.jpg',
 // 		title: 'Кроссовки Nike Dunk Low Retro White Black | BLAZE-BY',
-// 		price: '9990',
-// 		imageUrl:
-// 			'https://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/4NYAAOSwrUNgWKva/$_58.png'
+// 		price: '9990'
 // 	},
 // 	{
 // 		pureId: '37463',
+// 		src: 'img/sneakers/3.jpg',
 // 		title: 'Nike M2K Tekno',
-// 		price: '32200',
-// 		imageUrl:
-// 			'https://www.maha-amsterdam.com/cdn/shop/files/Nike-Air-Max-1-PRM-_Slate-Blue_-FJ0698-100-Maha-01.jpg?v=1684937229'
+// 		price: '32200'
 // 	},
 // 	{
 // 		pureId: '23931',
+// 		src: 'img/sneakers/4.jpg',
 // 		title: 'Nike Air Force 1 07 QS Valentines Day Love Letter',
-// 		price: '20100',
-// 		imageUrl:
-// 			'https://myreact.ru/wp-content/uploads/2021/04/Nike-Air-Force-1-Low-Valentines-Day-DD3384-600-Release-Date-2.jpg'
+// 		price: '20100'
 // 	},
 // 	{
 // 		pureId: '394023',
+// 		src: 'img/sneakers/5.jpg',
 // 		title: 'Кроссовки Nike Air 200',
-// 		price: '10700',
-// 		imageUrl: 'https://ir.ozone.ru/s3/multimedia-z/c1000/6383869691.jpg'
+// 		price: '10700'
 // 	},
 // 	{
 // 		pureId: '29582',
+// 		src: 'img/sneakers/6.jpg',
 // 		title: 'Кроссовки Nike Elephant One',
-// 		price: '21990',
-// 		imageUrl:
-// 			'https://cdn.shopify.com/s/files/1/0598/3669/4689/products/77338-116-original_800x_1e32a3fb-2855-4078-b297-742815405dde_1800x1800.png?v=1657936107'
+// 		price: '21990'
 // 	},
 // 	{
 // 		pureId: '48232',
+// 		src: 'img/sneakers/7.jpg',
 // 		title: 'Кроссовки Nike Model 69',
-// 		price: '10700',
-// 		imageUrl:
-// 			'https://static.tildacdn.com/tild3638-3866-4132-b833-643132653638/12.jpg'
+// 		price: '10700'
 // 	},
 // 	{
 // 		pureId: '193753',
+// 		src: 'img/sneakers/8.jpg',
 // 		title: 'Yeezy Boost 350 V2 Black (Non-Reflective)',
-// 		price: '10230',
-// 		imageUrl:
-// 			'https://www.maha-amsterdam.com/cdn/shop/products/Nike-Air-Max-97-Metallic-Silver-Chlorine-Blue-maha-01.jpg?v=1661179507'
+// 		price: '10230'
 // 	},
 // 	{
 // 		pureId: '5873732',
+// 		src: 'img/sneakers/9.jpg',
 // 		title: 'Air Jordan 1 Retro High Hyper Royal',
-// 		price: '10400',
-// 		imageUrl:
-// 			'https://www.maha-amsterdam.com/cdn/shop/products/Nike-Air-Max-1-Premium-Corduroy-Baltic-Blue-FB8915-400-Maha-01.jpg?v=1678890094'
+// 		price: '10400'
+// 	},
+// 	{
+// 		pureId: '5873732',
+// 		src: 'img/sneakers/10.jpg',
+// 		title: 'Air Jordan 1 Retro High Hyper Royal',
+// 		price: '10400'
+// 	},
+// 	{
+// 		pureId: '5873732',
+// 		src: 'img/sneakers11.jpg',
+// 		title: 'Air Jordan 1 Retro High Hyper Royal',
+// 		price: '10400'
+// 	},
+// 	{
+// 		pureId: '5873732',
+// 		src: 'img/sneakers/12.jpg',
+// 		title: 'Air Jordan 1 Retro High Hyper Royal',
+// 		price: '10400'
 // 	}
 // ]
 

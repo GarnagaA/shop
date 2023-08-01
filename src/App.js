@@ -28,22 +28,10 @@ export default function App() {
 						axios.get('https://64c54e60c853c26efadab373.mockapi.io/basket'),
 						axios.get('https://64c54e60c853c26efadab373.mockapi.io/items')
 					])
-				// const checkedImageUrl = src => {
-				// 	const img = new Image();
-				// 	img.onload = function () {return true}
-				// 	img.onerror = function () {return false}
-				// 	}
-				// 	//На случай если ссылки будут не валидными, мы подменим src на локальные файлы
-				// 	//
-				// ;[...itemsResponse.data].map( item => {
-				// 	if (checkedImageUrl) {
-				//
-				// 	} else return item
-				// })
-				setIsLoading(false)
-				setFavoriteItems(prev => [...prev, ...favoriteItemsResponse.data])
-				setBasketItems(prev => [...prev, ...basketItemsResponse.data])
-				setItems(prev => [...prev, ...itemsResponse.data])
+				await setIsLoading(false)
+				await setFavoriteItems(prev => [...prev, ...favoriteItemsResponse.data])
+				await setBasketItems(prev => [...prev, ...basketItemsResponse.data])
+				await setItems(prev => [...prev, ...itemsResponse.data])
 			} catch (error) {
 				alert('Ошибка при запросе данных с сервера;(')
 			}
@@ -73,7 +61,7 @@ export default function App() {
 						prevObj => Number(prevObj.pureId) !== Number(obj.pureId)
 					)
 				)
-				await axios.delete(
+				axios.delete(
 					`https://64c54e60c853c26efadab373.mockapi.io/basket/${checkedObject.id}`
 				)
 				console.log(`удалили объект c id = ${checkedObject.id}`)
@@ -100,48 +88,42 @@ export default function App() {
 			console.error(error)
 		}
 	}
-
-	const checkedImageUrl = (src, index) => {
-		const img = new Image()
-		img.onload = function () {
-			return true
-		}
-		img.onerror = function () {
-			return false
-		}
-	}
 	const onAddToFavorites = async obj => {
+		const checkedItem = favoriteItems.some(
+			favObj => Number(favObj.pureId) === Number(obj.pureId)
+		)
 		try {
-			if (
-				favoriteItems.some(
-					favObj => Number(favObj.pureId) === Number(obj.pureId)
-				)
-			) {
-				axios.delete(
-					`https://64c5521ec853c26efadab8a4.mockapi.io/favorites/${obj.id}`
-				)
-				// setFavoriteItems(prev =>
+			if (checkedItem) {
+				axios.delete(`https://64c5521ec853c26efadab8a4.mockapi.io/${obj.id}`)
+				// setFavoriteItems(prev => ????????????????????????????????
 				// 	prev.filter(item => Number(item.pureId) !== Number(obj.pureId))
 				// ) // не убираем из State карточку, на случай случайного клика, но удаляем с Backend
 			} else {
+				setFavoriteItems(prev => [...prev, obj])
 				const { data } = await axios.post(
 					'https://64c5521ec853c26efadab8a4.mockapi.io/favorites',
 					obj
 				)
-				setFavoriteItems(prev => [...prev, data])
-				console.log('onAddToFavorites добавили item.pureId = ' + obj.pureId)
+				setFavoriteItems(prev =>
+					prev.map(item => {
+						if (Number(item.pureId) === Number(item.pureId)) {
+							return { ...item, pureId: data.id }
+						} else return item
+					})
+				)
 			}
 		} catch (error) {
 			alert('Не удалось добавить в Избранное...')
 		}
-		// console.log(favoriteItems)
 	}
 
 	//  Метод delete() должен удалять объект с сервера по id ?????????????
-	const onRemoveFromBasket = (id, pureId) => {
+	const onRemoveFromBasket = async obj => {
 		try {
-			axios.delete(`https://64c54e60c853c26efadab373.mockapi.io/basket/${id}`)
-			setBasketItems(prev => prev.filter(obj => obj.pureId !== pureId))
+			await axios.delete(
+				`https://64c54e60c853c26efadab373.mockapi.io/basket/${obj.id}`
+			)
+			setBasketItems(prev => prev.filter(obj => obj.pureId !== obj.pureId))
 		} catch (error) {
 			// alert('Ошибка при удалении из корзины')
 			console.error(error)
@@ -155,8 +137,6 @@ export default function App() {
 	const isItemLiked = pureId => {
 		return favoriteItems.some(item => Number(item.pureId) === Number(pureId))
 	}
-
-	const openBasket = () => setBasket(prev => !prev)
 
 	return (
 		<AppContext.Provider
@@ -173,9 +153,7 @@ export default function App() {
 				onAddToFavorites,
 				onRemoveFromBasket,
 				isItemAdded,
-				isItemLiked,
-				openBasket,
-				checkedImageUrl
+				isItemLiked
 			}}
 		>
 			<div className='wrapper clear'>
