@@ -32,6 +32,7 @@ export default function App() {
 				await setFavoriteItems(prev => [...prev, ...favoriteItemsResponse.data])
 				await setBasketItems(prev => [...prev, ...basketItemsResponse.data])
 				await setItems(prev => [...prev, ...itemsResponse.data])
+				console.log(itemsResponse.data)
 			} catch (error) {
 				alert('Ошибка при запросе данных с сервера;(')
 			}
@@ -106,7 +107,7 @@ export default function App() {
 				)
 				setFavoriteItems(prev =>
 					prev.map(item => {
-						if (Number(item.pureId) === Number(item.pureId)) {
+						if (Number(item.pureId) === Number(data.pureId)) {
 							return { ...item, pureId: data.id }
 						} else return item
 					})
@@ -123,7 +124,7 @@ export default function App() {
 			await axios.delete(
 				`https://64c54e60c853c26efadab373.mockapi.io/basket/${obj.id}`
 			)
-			setBasketItems(prev => prev.filter(obj => obj.pureId !== obj.pureId))
+			setBasketItems(prev => prev.filter(item => item.pureId !== obj.pureId))
 		} catch (error) {
 			// alert('Ошибка при удалении из корзины')
 			console.error(error)

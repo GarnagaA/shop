@@ -12,6 +12,8 @@ function Card({ title, price, src, id, pureId }) {
 		isLoading
 	} = useContext(AppContext)
 
+	// const parentId = ''
+
 	const obj = { parentId: id, pureId, title, price, src }
 
 	return (

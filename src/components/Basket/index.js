@@ -4,7 +4,7 @@ import AppContext from '../context'
 
 function Basket() {
 	const { basketItems, onRemoveFromBasket, setBasket } = useContext(AppContext)
-
+	console.log(basketItems.length)
 	return (
 		<div className={styles.overlay}>
 			<div className={styles.basket}>
@@ -42,7 +42,7 @@ function Basket() {
 										height={32}
 										src='/img/btn-remove.svg'
 										alt='btn-remove'
-										onClick={onRemoveFromBasket({ ...item })}
+										onClick={() => onRemoveFromBasket({ ...item })}
 									/>
 								</li>
 							))}

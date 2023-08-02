@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import AppContext from './context'
 
 function Header() {
-	const { openBasket } = useContext(AppContext)
+	const { setBasket } = useContext(AppContext)
 
 	return (
 		<header className='d-flex justify-between p-40 align-center'>
@@ -26,7 +26,7 @@ function Header() {
 				<li className='mr-30'>
 					<img
 						className='cu-p'
-						onClick={() => openBasket}
+						onClick={() => setBasket(prev => !prev)}
 						width={18}
 						height={18}
 						src='/img/cart.svg'
