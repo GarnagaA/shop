@@ -6,17 +6,17 @@ function Header() {
 	const { setBasket } = useContext(AppContext)
 
 	return (
-		<header className='d-flex justify-between p-40 align-center'>
+		<header className='d-flex justify-between pt-30 pb-10 align-center'>
 			<Link to='/'>
 				<div className='d-flex justify-center'>
 					<img
-						width={40}
-						height={40}
-						src='/img/logo.png'
+						className='m-auto'
+						height={80}
+						src='/img/logo(3).png'
 						alt='Логотип компании'
 					/>
-					<div>
-						<h3>React-test</h3>
+					<div className='m-auto'>
+						<h3>React-Shop</h3>
 						<p className='opacity-5'>Магазин лучших кроссовок</p>
 					</div>
 				</div>
