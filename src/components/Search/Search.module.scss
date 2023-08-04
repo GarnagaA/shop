@@ -12,17 +12,13 @@ h2 {
 label {
   display: flex;
   height: 32px;
-  //padding: 0 15px;
-  //opacity: 0.5;
+
   border: none;
 
   input {
     font-size: 16px;
     border: none;
   }
-  //&:focus ~ label{
-  //  opacity: 1;
-  //}
 
   .imgSearch {
     width: 16px;

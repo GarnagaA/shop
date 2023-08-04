@@ -12,10 +12,7 @@ function Card({ title, price, src, id, pureId }) {
 		isLoading
 	} = useContext(AppContext)
 
-	// const parentId = ''
-
-	const obj = { parentId: id, pureId, title, price, src }
-
+	const obj = { id, pureId, title, price, src }
 	return (
 		<div className={styles.card}>
 			{isLoading ? (
@@ -39,19 +36,26 @@ function Card({ title, price, src, id, pureId }) {
 			) : (
 				<div>
 					{onAddToFavorites && (
-						<div
+						<button
 							className={styles.favorite}
 							onClick={() => onAddToFavorites(obj)}
 						>
-							<img
-								width={30}
-								height={30}
-								src={
-									isItemLiked(pureId) ? '/img/liked.svg' : '/img/unliked(2).svg'
-								}
-								alt='unliked'
-							/>
-						</div>
+							{isItemLiked(pureId) ? (
+								<img
+									width={30}
+									height={30}
+									src='/img/liked.svg'
+									alt='diss like'
+								/>
+							) : (
+								<img
+									width={18}
+									height={18}
+									src='/img/unliked(2).svg'
+									alt='like'
+								/>
+							)}
+						</button>
 					)}
 					<img src={src} alt='sneakers' />
 					<h5>
@@ -65,7 +69,10 @@ function Card({ title, price, src, id, pureId }) {
 							<b>{price} руб.</b>
 						</div>
 						{onAddToBasket && (
-							<button onClick={() => onAddToBasket(obj)}>
+							<button
+								className={styles.plus}
+								onClick={() => onAddToBasket(obj)}
+							>
 								{isItemAdded(pureId) ? (
 									<img
 										width={32}
@@ -75,8 +82,8 @@ function Card({ title, price, src, id, pureId }) {
 									/>
 								) : (
 									<img
-										width={11}
-										height={11}
+										width={13}
+										height={13}
 										src='/img/plus.svg'
 										alt='button add'
 									/>

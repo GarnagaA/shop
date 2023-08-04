@@ -1,6 +1,6 @@
 // ссылка на дизайн проета в Figme https://www.figma.com/file/fw0toTyXMwM1y4WIe0YFrJ/React-Sneakers?type=design&node-id=60-1005
 import React, { useEffect, useState } from 'react'
-import Header from './components/Header'
+import Header from './components/Header/Header'
 import Basket from './components/Basket'
 import AppContext from './components/context'
 import axios from 'axios'
@@ -28,11 +28,15 @@ export default function App() {
 						axios.get('https://64c54e60c853c26efadab373.mockapi.io/basket'),
 						axios.get('https://64c54e60c853c26efadab373.mockapi.io/items')
 					])
-				await setIsLoading(false)
-				await setFavoriteItems(prev => [...prev, ...favoriteItemsResponse.data])
-				await setBasketItems(prev => [...prev, ...basketItemsResponse.data])
-				await setItems(prev => [...prev, ...itemsResponse.data])
-				console.log(itemsResponse.data)
+				setIsLoading(false)
+				setFavoriteItems([...favoriteItemsResponse.data])
+				setBasketItems([...basketItemsResponse.data])
+
+				setItems([...itemsResponse.data])
+				// 	.map(item => {
+				// 	if (item)
+				// }))
+				console.log(favoriteItemsResponse.data)
 			} catch (error) {
 				alert('Ошибка при запросе данных с сервера;(')
 			}
@@ -50,6 +54,14 @@ export default function App() {
 		//     // }, []);
 		//
 	}, [])
+
+	const isItemAdded = pureId => {
+		return basketItems.some(obj => Number(obj.pureId) === Number(pureId))
+	}
+
+	const isItemLiked = pureId => {
+		return favoriteItems.some(obj => Number(obj.pureId) === Number(pureId))
+	}
 
 	const onAddToBasket = async obj => {
 		const checkedObject = basketItems.find(
@@ -90,15 +102,19 @@ export default function App() {
 		}
 	}
 	const onAddToFavorites = async obj => {
-		const checkedItem = favoriteItems.some(
-			favObj => Number(favObj.pureId) === Number(obj.pureId)
+		const checkedItem = favoriteItems.find(
+			item => Number(item.pureId) === Number(obj.pureId)
 		)
+		console.log(checkedItem)
+
 		try {
 			if (checkedItem) {
-				axios.delete(`https://64c5521ec853c26efadab8a4.mockapi.io/${obj.id}`)
-				// setFavoriteItems(prev => ????????????????????????????????
-				// 	prev.filter(item => Number(item.pureId) !== Number(obj.pureId))
-				// ) // не убираем из State карточку, на случай случайного клика, но удаляем с Backend
+				setFavoriteItems(prev =>
+					prev.filter(item => Number(item.pureId) !== Number(obj.pureId))
+				)
+				axios.delete(
+					`https://64c5521ec853c26efadab8a4.mockapi.io/favorites/${checkedItem.id}`
+				)
 			} else {
 				setFavoriteItems(prev => [...prev, obj])
 				const { data } = await axios.post(
@@ -108,8 +124,9 @@ export default function App() {
 				setFavoriteItems(prev =>
 					prev.map(item => {
 						if (Number(item.pureId) === Number(data.pureId)) {
-							return { ...item, pureId: data.id }
-						} else return item
+							return { ...item, id: data.id }
+						}
+						return item
 					})
 				)
 			}
@@ -119,25 +136,16 @@ export default function App() {
 	}
 
 	//  Метод delete() должен удалять объект с сервера по id ?????????????
-	const onRemoveFromBasket = async obj => {
-		try {
-			await axios.delete(
-				`https://64c54e60c853c26efadab373.mockapi.io/basket/${obj.id}`
-			)
-			setBasketItems(prev => prev.filter(item => item.pureId !== obj.pureId))
-		} catch (error) {
-			// alert('Ошибка при удалении из корзины')
-			console.error(error)
-		}
-	}
-
-	const isItemAdded = pureId => {
-		return basketItems.some(obj => Number(obj.pureId) === Number(pureId))
-	}
-
-	const isItemLiked = pureId => {
-		return favoriteItems.some(item => Number(item.pureId) === Number(pureId))
-	}
+	// const onRemoveFromBasket = obj => {
+	// 	try {
+	// 		axios.delete(
+	// 			`https://64c54e60c853c26efadab373.mockapi.io/basket/${obj.id}`
+	// 		)
+	// 		setBasketItems(prev => prev.filter(item => item.pureId !== obj.pureId))
+	// 	} catch (error) {
+	// 		console.error(error)
+	// 	}
+	// }
 
 	return (
 		<AppContext.Provider
@@ -152,7 +160,6 @@ export default function App() {
 				setBasket,
 				onAddToBasket,
 				onAddToFavorites,
-				onRemoveFromBasket,
 				isItemAdded,
 				isItemLiked
 			}}

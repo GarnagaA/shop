@@ -1,13 +1,15 @@
 import Card from '../components/Card'
+import EmptyFavorite from '../components/EmptyFavorite'
+
 import AppContext from '../components/context'
 import { useContext } from 'react'
-import EmptyFavorite from '../components/EmptyFavorite'
+import { v4 as uuidv4 } from 'uuid'
 
 export function Favorites() {
 	const { favoriteItems } = useContext(AppContext)
 
 	const renderItems = () => {
-		return favoriteItems.map((item, index) => <Card {...item} key={index} />)
+		return favoriteItems.map(item => <Card {...item} key={uuidv4()} />)
 	}
 
 	return (

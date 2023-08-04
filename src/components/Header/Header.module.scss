@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  align-items: center;
+  opacity: 0.9;
+  transition: 0.15s;
+  &:hover{
+    opacity: 1;
+  }
+  .logo {
+    opacity: 0.9;
+    margin: auto;
+    transition: 0.15s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+
+  .navbar {
+    display: flex;
+
+    img {
+      opacity: 0.8;
+      transition: 0.15s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+

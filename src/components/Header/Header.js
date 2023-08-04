@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import AppContext from './context'
+import AppContext from '../context'
+import styles from './Header.module.scss'
 
 function Header() {
 	const { setBasket } = useContext(AppContext)
 
 	return (
-		<header className='d-flex justify-between pt-30 pb-10 align-center'>
+		<header className={styles.wrapper}>
 			<Link to='/'>
 				<div className='d-flex justify-center'>
 					<img
-						className='m-auto'
+						className={styles.logo}
 						height={80}
 						src='/img/logo(3).png'
 						alt='Логотип компании'
@@ -22,13 +23,13 @@ function Header() {
 				</div>
 			</Link>
 
-			<ul className='d-flex'>
+			<ul className={styles.navbar}>
 				<li className='mr-30'>
 					<img
 						className='cu-p'
 						onClick={() => setBasket(prev => !prev)}
-						width={18}
-						height={18}
+						width={20}
+						height={20}
 						src='/img/cart.svg'
 						alt='Корзина'
 					/>
@@ -38,8 +39,8 @@ function Header() {
 					<Link to='/favorites'>
 						<img
 							className='mr-30 cu-p'
-							width={18}
-							height={18}
+							width={20}
+							height={20}
 							src='/img/heart.svg'
 							alt='Закладки'
 						/>
@@ -48,8 +49,8 @@ function Header() {
 				<li>
 					<img
 						className='cu-p'
-						width={18}
-						height={18}
+						width={20}
+						height={20}
 						src='/img/user.svg'
 						alt='Пользователь'
 					/>

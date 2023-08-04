@@ -15,10 +15,10 @@
     justify-content: space-between;
 
     width: 385px;
-    height: 100%;
+    height: 100vh;
 
     background-color: white;
-    box-shadow: -10px 20px 30px rgba(0, 0, 0, 0.07);
+    box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.07);
 
     .delete {
       opacity: 0.5;
@@ -50,50 +50,6 @@
       display: flex;
       flex-wrap: wrap;
       overflow: auto;
-
-      .card {
-        position: relative;
-        border: 1px solid #f8f8f8;
-        padding: 3%;
-        width: 100%;
-        border-radius: 20px;
-        transition:
-          box-shadow 0.2s ease-in-out,
-          transform 0.2s ease-in-out;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &:hover {
-          box-shadow: 0 20px 30px rgba(0, 0, 0, 0.07);
-          cursor: pointer;
-          transform: translateY(-2px);
-        }
-
-        h5 {
-          font-weight: 400;
-          font-size: 14px;
-          padding: 5%;
-          margin: 0;
-        }
-
-        b {
-          padding: 5%;
-          margin: 0;
-        }
-
-        .delete {
-          opacity: 0.5;
-          cursor: pointer;
-          transition: 0.3s;
-          border-radius: 9px;
-
-          &:hover {
-            opacity: 1;
-            border: 1px solid #d5d5da;
-          }
-        }
-      }
     }
 
     .total {
@@ -115,56 +71,25 @@
       }
 
       button {
-        width: 100%;
-        height: 55px;
-        background-color: #9dd558;
-        border-radius: 18px;
-        border: 0;
-        color: #ffffff;
-        font-size: 16px;
-        font-weight: 500;
-        transition: 0.2s;
-
-        &:hover {
-          font-size: 18px;
-          transform: translateY(-2px);
-        }
-      }
-    }
-    .emptyBasket {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 30%;
-      justify-content: center;
-
-      .text {
-        text-align: center;
-        width: 285px;
-        margin-bottom: 40px;
-        opacity: 0.4;
-      }
-
-      .button {
-        //position: relative;
-        width: 245px;
+        width:90%;
         height: 55px;
         background: #9dd458;
         border-radius: 18px;
+        border: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         border: none;
-        transition: 0.4s ease-in-out;
+        transition: 0.2s ease-in-out;
 
         &:hover {
-          transform: translateX(-7px);
+          transform: translateY(-1px);
         }
 
-        .img {
+        img {
           left: 20px;
           color: white;
-          transform: rotate(180deg);
+          margin: 0 12px ;
         }
 
         span {
@@ -173,8 +98,23 @@
           font-size: 16px;
           line-height: 19px;
           padding-left: 30px;
+          margin: 0 12px;
         }
       }
     }
+    .emptyBasket {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 50%;
+      justify-content: center;
+
+      .text {
+        text-align: center;
+        width: 285px;
+        margin-bottom: 40px;
+        opacity: 0.4;
+      }
+     }
   }
 }

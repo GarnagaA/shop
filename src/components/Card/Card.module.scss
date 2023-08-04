@@ -2,8 +2,7 @@
   box-sizing: border-box;
   border: 1px solid #f8f8f8;
   padding: 3%;
-  width: 25%;
-  margin-bottom: 3%;
+  width: 23%;
   border-radius: 20px;
   transition:
     box-shadow 0.2s ease-in-out,
@@ -11,6 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 1% 1%;
 
   &:hover {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.07);
@@ -26,6 +26,8 @@
     position: absolute;
     cursor: pointer;
     border-radius: 8px;
+    width: 30px;
+    height: 30px;
   }
 
   h5 {
@@ -38,14 +40,23 @@
     border: 1px solid #f2f2f2;
     box-sizing: border-box;
     border-radius: 8px;
-    height: 32px;
-    width: 32px;
     cursor: pointer;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.12s;
+
+    &:hover{
+      border: 2px solid #e8e5e5;
+    }
   }
+
+  .plus{
+    width: 32px;
+    height: 32px;
+  }
+
 
   span {
     text-transform: uppercase;

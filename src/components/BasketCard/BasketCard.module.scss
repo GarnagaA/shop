@@ -1,0 +1,43 @@
+.card {
+  position: relative;
+  border: 1px solid #f8f8f8;
+  padding: 3%;
+  width: 100%;
+  border-radius: 20px;
+  transition:
+          box-shadow 0.2s ease-in-out,
+          transform 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.07);
+    cursor: pointer;
+    transform: translateY(-2px);
+  }
+
+  h5 {
+    font-weight: 400;
+    font-size: 14px;
+    padding: 5%;
+    margin: 0;
+  }
+
+  b {
+    padding: 5%;
+    margin: 0;
+  }
+
+  .delete {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 9px;
+
+    &:hover {
+      opacity: 1;
+      border: 1px solid #d5d5da;
+    }
+  }
+}
