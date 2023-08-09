@@ -1,5 +1,5 @@
 import Card from '../components/Card'
-import EmptyFavorite from '../components/EmptyFavorite'
+import Info from '../components/Info'
 
 import AppContext from '../components/context'
 import { useContext } from 'react'
@@ -13,14 +13,19 @@ export function Favorites() {
 	}
 
 	return (
-		<div className='p-40 w100p h100p '>
+		<div className='p-40 w100p h100p'>
 			{favoriteItems.length > 0 ? (
 				<div>
 					<h1 className=''>Мои закладки</h1>
 					<ul className='d-flex flex-wrap'>{renderItems()}</ul>
 				</div>
 			) : (
-				<EmptyFavorite />
+				<Info
+					title={'Закладок нет :('}
+					img={'/img/emoji-cry.png'}
+					text={'Вы ничего не добавляли в закладки'}
+					size={70}
+				/>
 			)}
 		</div>
 	)

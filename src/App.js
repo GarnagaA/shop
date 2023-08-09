@@ -7,12 +7,14 @@ import axios from 'axios'
 import { Route, Routes } from 'react-router-dom'
 
 import { Favorites } from './pages/Favorites'
+import { Orders } from './pages/Orders'
 import Home from './pages/Home'
 
 export default function App() {
 	const [items, setItems] = useState([])
 	const [basketItems, setBasketItems] = useState([]) // хранит товары переданные в корзину
 	const [favoriteItems, setFavoriteItems] = useState([]) // Избранные товары
+	const [orders, setOrders] = useState([]) // Оформленные заказы
 
 	const [basket, setBasket] = useState(false) // хранит состояние корзины open/close
 	const [searchValue, setSearchValue] = useState('') // хранит текст введённый в input
@@ -22,20 +24,23 @@ export default function App() {
 		async function fetchData() {
 			// Чтобы избежать бесконечного цикла ререндера функции App и запроса axios(который обновляет state), мы обращаемся к backend один раз
 			try {
-				const [favoriteItemsResponse, basketItemsResponse, itemsResponse] =
-					await Promise.all([
-						axios.get('https://64c5521ec853c26efadab8a4.mockapi.io/favorites'),
-						axios.get('https://64c54e60c853c26efadab373.mockapi.io/basket'),
-						axios.get('https://64c54e60c853c26efadab373.mockapi.io/items')
-					])
+				const [
+					favoriteItemsResponse,
+					basketItemsResponse,
+					itemsResponse,
+					ordersResponse
+				] = await Promise.all([
+					axios.get('https://64c5521ec853c26efadab8a4.mockapi.io/favorites'),
+					axios.get('https://64c54e60c853c26efadab373.mockapi.io/basket'),
+					axios.get('https://64c54e60c853c26efadab373.mockapi.io/items'),
+					axios.get('https://64c5521ec853c26efadab8a4.mockapi.io/orders')
+				])
 				setIsLoading(false)
 				setFavoriteItems([...favoriteItemsResponse.data])
 				setBasketItems([...basketItemsResponse.data])
-
+				setOrders([...ordersResponse.data])
 				setItems([...itemsResponse.data])
-				// 	.map(item => {
-				// 	if (item)
-				// }))
+
 				console.log(favoriteItemsResponse.data)
 			} catch (error) {
 				alert('Ошибка при запросе данных с сервера;(')
@@ -77,7 +82,6 @@ export default function App() {
 				axios.delete(
 					`https://64c54e60c853c26efadab373.mockapi.io/basket/${checkedObject.id}`
 				)
-				console.log(`удалили объект c id = ${checkedObject.id}`)
 			} else {
 				setBasketItems(prev => [...prev, obj])
 				const { data } = await axios.post(
@@ -105,7 +109,6 @@ export default function App() {
 		const checkedItem = favoriteItems.find(
 			item => Number(item.pureId) === Number(obj.pureId)
 		)
-		console.log(checkedItem)
 
 		try {
 			if (checkedItem) {
@@ -134,23 +137,11 @@ export default function App() {
 			alert('Не удалось добавить в Избранное...')
 		}
 	}
-
-	//  Метод delete() должен удалять объект с сервера по id ?????????????
-	// const onRemoveFromBasket = obj => {
-	// 	try {
-	// 		axios.delete(
-	// 			`https://64c54e60c853c26efadab373.mockapi.io/basket/${obj.id}`
-	// 		)
-	// 		setBasketItems(prev => prev.filter(item => item.pureId !== obj.pureId))
-	// 	} catch (error) {
-	// 		console.error(error)
-	// 	}
-	// }
-
 	return (
 		<AppContext.Provider
 			value={{
 				items,
+				orders,
 				basketItems,
 				favoriteItems,
 				setIsLoading,
@@ -158,6 +149,7 @@ export default function App() {
 				searchValue,
 				setSearchValue,
 				setBasket,
+				setOrders,
 				onAddToBasket,
 				onAddToFavorites,
 				isItemAdded,
@@ -170,6 +162,7 @@ export default function App() {
 				<Routes>
 					<Route path='/favorites' element={<Favorites />} />
 					<Route path='/' element={<Home />} />
+					<Route path='/orders' element={<Orders />} />
 				</Routes>
 			</div>
 		</AppContext.Provider>

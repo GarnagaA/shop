@@ -10,15 +10,86 @@
   .basket {
     position: absolute;
     right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
 
     width: 385px;
     height: 100vh;
 
     background-color: white;
     box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.07);
+
+    h2 {
+      font-size: 24px;
+      margin-left: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+      .cards {
+        height: 78vh;
+        flex-wrap: wrap;
+        overflow: auto;
+      }
+
+      .total {
+        margin: 15px;
+        flex: 0 1;
+        bottom: 0;
+
+        li {
+          display: flex;
+          align-items: flex-end;
+        }
+
+        div {
+          flex: 1;
+          height: 1px;
+          border-bottom: 1px dashed #dfdfdf;
+          position: relative;
+          top: -4px;
+        }
+
+        button {
+          width:90%;
+          height: 55px;
+          background: #9dd458;
+          border-radius: 18px;
+          border: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+          transition: 0.2s ease-in-out;
+
+          &:disabled {
+            background-color: #d0caca;
+            animation: button-loading 0.8s ease-in-out infinite ;
+          }
+
+          &:hover {
+            transform: translateY(-1px);
+          }
+
+          img {
+            left: 20px;
+            color: white;
+            margin: 0 12px ;
+          }
+
+          span {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 19px;
+            padding-left: 30px;
+            margin: 0 12px;
+          }
+        }
+      }
+    }
 
     .delete {
       opacity: 0.5;
@@ -32,10 +103,9 @@
       }
     }
 
-    h2 {
-      font-size: 24px;
-      margin-left: 20px;
-    }
+
+
+
 
     p {
       margin: 5px 0;
@@ -46,62 +116,9 @@
       font-size: 14px;
     }
 
-    .cardsContainer {
-      display: flex;
-      flex-wrap: wrap;
-      overflow: auto;
-    }
 
-    .total {
-      margin: 15px;
-      flex: 0 1;
-      bottom: 0;
 
-      li {
-        display: flex;
-        align-items: flex-end;
-      }
 
-      div {
-        flex: 1;
-        height: 1px;
-        border-bottom: 1px dashed #dfdfdf;
-        position: relative;
-        top: -4px;
-      }
-
-      button {
-        width:90%;
-        height: 55px;
-        background: #9dd458;
-        border-radius: 18px;
-        border: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        transition: 0.2s ease-in-out;
-
-        &:hover {
-          transform: translateY(-1px);
-        }
-
-        img {
-          left: 20px;
-          color: white;
-          margin: 0 12px ;
-        }
-
-        span {
-          color: white;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 19px;
-          padding-left: 30px;
-          margin: 0 12px;
-        }
-      }
-    }
     .emptyBasket {
       display: flex;
       flex-wrap: wrap;
@@ -116,5 +133,15 @@
         opacity: 0.4;
       }
      }
+  }
+}
+
+@keyframes button-loading {
+  0% {
+  opacity: 1;
+  } 70% {
+opacity: 0.5;
+  } 100%{
+opacity: 1;
   }
 }

@@ -1,75 +1,118 @@
 import styles from './Basket.module.scss'
-import { useContext } from 'react'
-import AppContext from '../context'
 import BasketCard from '../BasketCard'
-import Button from '../Button'
 import { v4 as uuidv4 } from 'uuid'
-
-const obj = {}
-const createOrder = obj => {
-	console.log(obj)}
+import Info from '../Info'
+import axios from 'axios'
+import moment from 'moment/moment'
+import { useBasket } from '../../hooks/useBasket'
 
 function Basket() {
-	const { basketItems, setBasket } = useContext(AppContext)
-	console.log(basketItems.length)
+	const {
+		onAddToBasket,
+		basketItems,
+		setBasket,
+		setOrders,
+		isOrderComplete,
+		setIsOrderComplete,
+		totalPrice,
+		isLoading,
+		setIsLoading,
+		isOrderId,
+		setIsOrderId
+	} = useBasket()
+
+	const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+	const dateOrder = () => {
+		return moment().format('L')
+	}
+	const taxOrder = () => Math.floor(totalPrice() * 0.05)
+
+	const onAddToOrders = async () => {
+		setIsLoading(true)
+		try {
+			console.log(`onAddToOrders начала работу \n isLoading === ${isLoading}`)
+			const { data } = await axios.post(
+				'https://64c5521ec853c26efadab8a4.mockapi.io/orders',
+				{
+					items: basketItems,
+					dateOrder: dateOrder(),
+					totalPrice: String(totalPrice()),
+					taxOrder: String(taxOrder())
+				}
+			)
+			setOrders(prev => [...prev, data])
+			setIsOrderId(data.id)
+			setIsOrderComplete(true)
+
+			for (let i = 0; i < basketItems.length; i++) {
+				onAddToBasket(basketItems[i])
+				await delay(1000)
+			}
+		} catch (error) {
+			alert('Ошибка при создании заказа :(')
+		}
+		setIsLoading(false)
+	}
+	console.log(isOrderId)
 	return (
 		<div className={styles.overlay}>
 			<div className={styles.basket}>
+				<h2 className='d-flex justify-between mr-20'>
+					Корзина
+					<img
+						className={styles.delete}
+						width={32}
+						height={32}
+						src='/img/btn-remove.svg'
+						alt='btn-remove'
+						onClick={() => setBasket(prev => !prev)}
+					/>
+				</h2>
 				<div>
-					<h2 className='d-flex justify-between mr-20'>
-						Корзина
-						<img
-							className={styles.delete}
-							width={32}
-							height={32}
-							src='/img/btn-remove.svg'
-							alt='btn-remove'
-							onClick={() => setBasket(prev => !prev)}
-						/>
-					</h2>
 					{basketItems.length > 0 ? (
-						<ul className={styles.cardsContainer}>
-							{basketItems.map(item => (
-								<BasketCard key={uuidv4()} {...item} />
-							))}
-						</ul>
-					) : (
-						<div className={styles.emptyBasket}>
-							<h3 className='fw-bold m-5'>Корзина пустая</h3>
-							<p className={styles.text}>
-								Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-							</p>
-							<div className='container'>
-								<img src='/img/empty-cart.jpg' alt='empty basket' />
+						<div className={styles.container}>
+							<ul className={styles.cards}>
+								{basketItems.map(item => (
+									<BasketCard key={uuidv4()} {...item} />
+								))}
+							</ul>
+							<div className={styles.total}>
+								<ul>
+									<li>
+										<span>Итого:</span>
+										<div className='emptyContainer'></div>
+										<b>{totalPrice()} руб.</b>
+									</li>
+									<li className='mb-10'>
+										<span>Налог 5%:</span>
+										<div className='emptyContainer'></div>
+										<b>{Math.floor(totalPrice() * 0.05)} руб.</b>
+									</li>
+								</ul>
+								<button disabled={isLoading} onClick={() => onAddToOrders()}>
+									<span>Оформить заказ</span>
+									<img src='/img/arrow.svg' alt='arrow' />
+								</button>
 							</div>
-							<Button />
 						</div>
+					) : (
+						<Info
+							width={isOrderComplete ? 83 : 120}
+							height={120}
+							title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
+							img={
+								isOrderComplete
+									? '/img/complete-order.jpg'
+									: '/img/empty-cart.jpg'
+							}
+							text={
+								isOrderComplete
+									? `Ваш заказ #${isOrderId} скоро будет передан курьерской доставке`
+									: 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+							}
+						/>
 					)}
 				</div>
-
-
-				{basketItems.length > 0 && (
-					<div className={styles.total}>
-						<ul>
-							<li>
-								<span>Итого:</span>
-								<div className='emptyContainer'></div>
-								<b>21 498 руб.</b>
-							</li>
-							<li className='mb-10'>
-								<span>Налог 5%:</span>
-								<div className='emptyContainer'></div>
-								<b>1074 руб.</b>
-							</li>
-						</ul>
-						<button
-							onClick={() => setBasket(prev => !prev)}
-						>
-							<span>Оформить заказ</span>
-							<img src='/img/arrow.svg' alt='arrow' />
-						</button>
-					</div>
-				)}
 			</div>
 		</div>
 	)

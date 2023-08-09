@@ -1,21 +1,21 @@
 .card {
   box-sizing: border-box;
   border: 1px solid #f8f8f8;
-  padding: 3%;
+  padding: 2%;
   width: 23%;
   border-radius: 20px;
   transition:
-    box-shadow 0.2s ease-in-out,
-    transform 0.2s ease-in-out;
+    box-shadow 0.2s ease-in-out;
+    //transform 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 1% 1%;
+  margin: 1%;
 
   &:hover {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.07);
     cursor: pointer;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 
   img {

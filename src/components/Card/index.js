@@ -14,7 +14,7 @@ function Card({ title, price, src, id, pureId }) {
 
 	const obj = { id, pureId, title, price, src }
 	return (
-		<div className={styles.card}>
+		<div className={styles.card} style={{ backgroundColor: 'white' }}>
 			{isLoading ? (
 				<ContentLoader
 					speed={2}
@@ -34,7 +34,7 @@ function Card({ title, price, src, id, pureId }) {
 					<rect x='0' y='199' rx='8' ry='8' width='80' height='24' />
 				</ContentLoader>
 			) : (
-				<div>
+				<li>
 					{onAddToFavorites && (
 						<button
 							className={styles.favorite}
@@ -91,7 +91,7 @@ function Card({ title, price, src, id, pureId }) {
 							</button>
 						)}
 					</div>
-				</div>
+				</li>
 			)}
 		</div>
 	)
