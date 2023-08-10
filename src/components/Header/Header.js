@@ -11,7 +11,7 @@ function Header() {
 					<img
 						className={styles.logo}
 						height={80}
-						src='/img/logo(3).png'
+						src='img/logo(3).png'
 						alt='Логотип компании'
 					/>
 					<div className='m-auto'>
@@ -27,7 +27,7 @@ function Header() {
 						className='cu-p'
 						width={25}
 						height={25}
-						src='/img/cart.svg'
+						src='img/cart.svg'
 						alt='Корзина'
 					/>
 					<span>{totalPrice()} руб.</span>
@@ -38,7 +38,7 @@ function Header() {
 							className='mr-30 cu-p'
 							width={25}
 							height={25}
-							src='/img/heart.svg'
+							src='img/heart.svg'
 							alt='Закладки'
 						/>
 					</Link>
@@ -49,7 +49,7 @@ function Header() {
 							className='cu-p'
 							width={25}
 							height={25}
-							src='/img/user.svg'
+							src='img/user.svg'
 							alt='Пользователь'
 						/>
 					</li>

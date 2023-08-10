@@ -44,14 +44,14 @@ function Card({ title, price, src, id, pureId }) {
 								<img
 									width={30}
 									height={30}
-									src='/img/liked.svg'
+									src='img/liked.svg'
 									alt='diss like'
 								/>
 							) : (
 								<img
 									width={18}
 									height={18}
-									src='/img/unliked(2).svg'
+									src='img/unliked(2).svg'
 									alt='like'
 								/>
 							)}
@@ -77,14 +77,14 @@ function Card({ title, price, src, id, pureId }) {
 									<img
 										width={32}
 										height={32}
-										src='/img/btn-checked.svg'
+										src='img/btn-checked.svg'
 										alt='button '
 									/>
 								) : (
 									<img
 										width={13}
 										height={13}
-										src='/img/plus.svg'
+										src='img/plus.svg'
 										alt='button add'
 									/>
 								)}
