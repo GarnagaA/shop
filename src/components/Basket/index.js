@@ -91,7 +91,7 @@ function Basket() {
 								</ul>
 								<button disabled={isLoading} onClick={() => onAddToOrders()}>
 									<span>Оформить заказ</span>
-									<img src='/img/arrow.svg' alt='arrow' />
+									<img src='img/arrow.svg' alt='arrow' />
 								</button>
 							</div>
 						</div>
@@ -102,8 +102,8 @@ function Basket() {
 							title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
 							img={
 								isOrderComplete
-									? '/img/complete-order.jpg'
-									: '/img/empty-cart.jpg'
+									? 'img/complete-order.jpg'
+									: 'img/empty-cart.jpg'
 							}
 							text={
 								isOrderComplete

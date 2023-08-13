@@ -45,7 +45,7 @@ function Card({ title, price, src, id, pureId }) {
 									width={30}
 									height={30}
 									className={styles.favorite__added}
-									src='/img/liked.svg'
+									src='img/liked.svg'
 									alt='diss like'
 								/>
 							) : (
@@ -53,7 +53,7 @@ function Card({ title, price, src, id, pureId }) {
 									width={18}
 									height={18}
 									className={styles.favorite__removed}
-									src='/img/unliked(2).svg'
+									src='img/unliked(2).svg'
 									alt='like'
 								/>
 							)}
@@ -75,13 +75,13 @@ function Card({ title, price, src, id, pureId }) {
 								{isItemAdded(pureId) ? (
 									<img
 										className={styles.plus__added}
-										src='/img/btn-checked.svg'
+										src='img/btn-checked.svg'
 										alt='button '
 									/>
 								) : (
 									<img
 										className={styles.plus__removed}
-										src='/img/plus.svg'
+										src='img/plus.svg'
 										alt='button add'
 									/>
 								)}

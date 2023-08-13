@@ -15,7 +15,7 @@ function Search() {
 				{searchValue ? `Поиск по запросу: ${searchValue}` : `Все кроссовки`}
 			</h2>
 			<label>
-				<img className={styles.imgSearch} src='/img/search.svg' alt='search' />
+				<img className={styles.imgSearch} src='img/search.svg' alt='search' />
 				<input
 					placeholder='Поиск...'
 					onChange={onChangeSearchValue}
@@ -23,7 +23,7 @@ function Search() {
 				/>
 				<img
 					className={styles.buttonClose}
-					src='/img/btn-remove.svg'
+					src='img/btn-remove.svg'
 					alt='btn-remove'
 					onClick={() => setSearchValue('')}
 				/>

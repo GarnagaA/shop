@@ -11,7 +11,7 @@ function Header() {
 					<img
 						className={styles.logo}
 						height={80}
-						src='/img/logo(3).png'
+						src='img/logo(3).png'
 						alt='Логотип компании'
 					/>
 					<div className='m-auto'>
@@ -23,22 +23,17 @@ function Header() {
 
 			<ul className={styles.navbar}>
 				<li onClick={() => setBasket(true)}>
-					<img width={25} height={25} src='/img/cart.svg' alt='Корзина' />
+					<img width={25} height={25} src='img/cart.svg' alt='Корзина' />
 					<span>{totalPrice()} руб.</span>
 				</li>
 				<Link to='/favorites'>
 					<li>
-						<img width={25} height={25} src='/img/heart.svg' alt='Закладки' />
+						<img width={25} height={25} src='img/heart.svg' alt='Закладки' />
 					</li>
 				</Link>
 				<Link to={'/orders'}>
 					<li>
-						<img
-							width={25}
-							height={25}
-							src='/img/user.svg'
-							alt='Пользователь'
-						/>
+						<img width={25} height={25} src='img/user.svg' alt='Пользователь' />
 					</li>
 				</Link>
 			</ul>
