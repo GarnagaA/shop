@@ -57,7 +57,7 @@ function Basket() {
 	return (
 		<div className={styles.overlay}>
 			<div className={styles.basket}>
-				<h2 className='d-flex justify-between mr-20'>
+				<h2 className='d-flex justify-between'>
 					Корзина
 					<img
 						className={styles.delete}

@@ -2,7 +2,7 @@
   position: relative;
   border: 1px solid #f8f8f8;
   margin: 10px 10px 10px 0;
-  padding: 5%;
+  padding: 2%;
   width: 100%;
   border-radius: 20px;
   transition:
@@ -40,5 +40,12 @@
       opacity: 1;
       border: 1px solid #d5d5da;
     }
+  }
+}
+@media  screen  and (min-width: 340px) and (max-width: 768px) {
+  .card{
+
+    box-shadow: 0 2px 3px #f3f0f0;
+
   }
 }
