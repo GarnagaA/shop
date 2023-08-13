@@ -8,6 +8,7 @@
   background-color: rgb(253, 252, 252);
   border-radius: 20px;
 
+
   &:hover {
     opacity: 1;
   }
@@ -28,7 +29,13 @@
       margin-left: 0;
       padding-left: 0;
     }
-
+  }
+  .order__list {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
+//@media  screen  and (min-width: 340px) and (max-width: 768px) {
+//
+//}
 

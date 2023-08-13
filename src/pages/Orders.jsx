@@ -14,7 +14,9 @@ export function Orders() {
 			{orders.length > 0 ? (
 				<div>
 					<h2 className='ml-10'>Мои покупки</h2>
-					<ul className='d-flex flex-wrap justify-between'>{renderOrders()}</ul>
+					<ul className='d-flex flex-wrap justify-between overlay'>
+						{renderOrders()}
+					</ul>
 				</div>
 			) : (
 				<Info
