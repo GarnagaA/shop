@@ -44,6 +44,7 @@ function Card({ title, price, src, id, pureId }) {
 								<img
 									width={30}
 									height={30}
+									className={styles.favorite__added}
 									src='/img/liked.svg'
 									alt='diss like'
 								/>
@@ -51,6 +52,7 @@ function Card({ title, price, src, id, pureId }) {
 								<img
 									width={18}
 									height={18}
+									className={styles.favorite__removed}
 									src='/img/unliked(2).svg'
 									alt='like'
 								/>
@@ -69,21 +71,16 @@ function Card({ title, price, src, id, pureId }) {
 							<b>{price} руб.</b>
 						</div>
 						{onAddToBasket && (
-							<button
-								className={styles.plus}
-								onClick={() => onAddToBasket(obj)}
-							>
+							<button onClick={() => onAddToBasket(obj)}>
 								{isItemAdded(pureId) ? (
 									<img
-										width={32}
-										height={32}
+										className={styles.plus__added}
 										src='/img/btn-checked.svg'
 										alt='button '
 									/>
 								) : (
 									<img
-										width={13}
-										height={13}
+										className={styles.plus__removed}
 										src='/img/plus.svg'
 										alt='button add'
 									/>
