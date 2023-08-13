@@ -17,7 +17,7 @@ export function Favorites() {
 			{favoriteItems.length > 0 ? (
 				<div>
 					<h1 className=''>Мои закладки</h1>
-					<ul className='d-flex flex-wrap'>{renderItems()}</ul>
+					<ul className='d-flex flex-wrap justify-between'>{renderItems()}</ul>
 				</div>
 			) : (
 				<Info

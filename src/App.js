@@ -156,7 +156,7 @@ export default function App() {
 				isItemLiked
 			}}
 		>
-			<div className='wrapper clear'>
+			<div className='wrapper clear w100p h100p'>
 				{basket && <Basket />}
 				<Header />
 				<Routes>

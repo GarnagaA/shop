@@ -17,9 +17,9 @@ function Home() {
 	}
 
 	return (
-		<div className='content2 p-40'>
+		<div className='p-40'>
 			<Search />
-			<ul className='d-flex flex-wrap'>{renderItems()}</ul>
+			<ul className='d-flex flex-wrap justify-between'>{renderItems()}</ul>
 		</div>
 	)
 }

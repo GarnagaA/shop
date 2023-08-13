@@ -15,7 +15,7 @@ function Info({ img, title, text, width, height }) {
 				<Link to='/'>
 					<div className='m-0'>
 						<button className={styles.button} onClick={() => setBasket(false)}>
-							<img src='img/arrow.svg' alt='arrow' />
+							<img src='/img/arrow.svg' alt='arrow' />
 							<span>Вернуться назад</span>
 						</button>
 					</div>

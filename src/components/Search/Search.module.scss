@@ -40,4 +40,59 @@ label {
   .buttonClose:hover {
     opacity: 1;
   }
+
+}
+@media  screen  and (min-width: 340px) and (max-width: 480px) {
+
+  .search {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+  h2 {
+  font-size: 18px;
+
+  }
+  label{
+    border-radius: 20px;
+    height: 40px;
+    padding: 7px;
+    width: 100%;
+    box-shadow: 0 5px 10px #ece3e3;
+    input {
+    width: 100%;
+    }
+  }
+}
+
+@media  screen  and (min-width: 481px) and (max-width: 768px) {
+
+  .search {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center;
+
+  }
+
+  h2 {
+    font-size: 18px;
+
+  }
+  label{
+    border-radius: 20px;
+    height: 40px;
+    padding: 7px;
+    width: 100%;
+    box-shadow: 0 5px 10px #ece3e3;
+
+    input {
+      width: 100%;
+
+    }
+  }
 }

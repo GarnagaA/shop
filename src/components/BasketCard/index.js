@@ -19,7 +19,7 @@ function BasketCard({ title, price, src, id, pureId }) {
 				className={styles.delete}
 				width={32}
 				height={32}
-				src='img/btn-remove.svg'
+				src='/img/btn-remove.svg'
 				alt='btn-remove'
 				onClick={() => onAddToBasket(obj)}
 			/>

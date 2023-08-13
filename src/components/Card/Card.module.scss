@@ -8,6 +8,7 @@
     box-shadow 0.2s ease-in-out;
 
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
   margin: 1%;
@@ -74,9 +75,46 @@
 }
 
 @media  screen  and (min-width: 340px) and (max-width: 480px) {
+ .card {
+   width: 100%;
+   display: block;
+   padding: 8%;
+   margin: 6% 0 0 0;
+
+   box-shadow: 0 3px 5px #ece3e3;;
+
+   .plus {
+      width: 42px;
+     height: 42px;
+
+     img {
+       width: 100%;
+       height: 100%;
+     }
+   }
+
+   .plus {
+
+     img {
+       width: 100%;
+       height: 100%;
+     }
+   }
+ }
 
 }
 
-@media  screen  and (min-width: 340px) and (max-width: 480px) {
+@media  screen  and (min-width: 481px) and (max-width: 768px) {
+  .card {
+    box-sizing: border-box;
+    width: 44%;
+    padding: 4%;
+    margin-top: 5%;
 
+    box-shadow: 0 5px 10px #ece3e3;;
+
+    button {
+      box-shadow: 0 2px 3px #ece3e3;;
+    }
+  }
 }
