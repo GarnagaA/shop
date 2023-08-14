@@ -21,9 +21,9 @@ export function Favorites() {
 				</div>
 			) : (
 				<Info
-					title={'Закладок нет :('}
-					img={'/img/emoji-cry.png'}
-					text={'Вы ничего не добавляли в закладки'}
+					title='Закладок нет :('
+					img='/img/emoji-cry.png'
+					text='Вы ничего не добавляли в закладки'
 					size={70}
 				/>
 			)}

@@ -11,14 +11,14 @@ import { Orders } from './pages/Orders'
 import Home from './pages/Home'
 
 export default function App() {
-	const [items, setItems] = useState([])
+	const [items, setItems] = useState([]) // все товары
 	const [basketItems, setBasketItems] = useState([]) // хранит товары переданные в корзину
 	const [favoriteItems, setFavoriteItems] = useState([]) // Избранные товары
 	const [orders, setOrders] = useState([]) // Оформленные заказы
 
 	const [basket, setBasket] = useState(false) // хранит состояние корзины open/close
 	const [searchValue, setSearchValue] = useState('') // хранит текст введённый в input
-	const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(true) // состояние загрузки страницы
 
 	useEffect(() => {
 		async function fetchData() {

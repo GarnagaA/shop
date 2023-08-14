@@ -20,9 +20,9 @@ export function Orders() {
 				</div>
 			) : (
 				<Info
-					title={'У вас нет заказов'}
-					img={'/img/emoji-sad.png'}
-					text={'Может оформите хотя бы один заказ.'}
+					title='У вас нет заказов'
+					img='/img/emoji-sad.png'
+					text='Может оформите хотя бы один заказ.'
 					size={70}
 				/>
 			)}
